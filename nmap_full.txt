@@ -1,0 +1,31 @@
+# Nmap 7.70 scan initiated Fri Apr 12 22:13:54 2019 as: nmap -sC -sV -A -p- --script=vuln -oN nmap_full.txt 192.168.64.192
+Nmap scan report for 192.168.64.192
+Host is up (0.0013s latency).
+Not shown: 65532 filtered ports
+PORT    STATE  SERVICE  VERSION
+22/tcp  closed ssh
+80/tcp  open   http     Apache httpd
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-vuln-cve2014-3704: ERROR: Script execution failed (use -d to debug)
+443/tcp open   ssl/http Apache httpd
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-server-header: Apache
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-vuln-cve2014-3704: ERROR: Script execution failed (use -d to debug)
+|_sslv2-drown: 
+MAC Address: 00:0C:29:4A:DE:62 (VMware)
+Device type: general purpose
+Running: Linux 3.X|4.X
+OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4
+OS details: Linux 3.10 - 4.11
+Network Distance: 1 hop
+
+TRACEROUTE
+HOP RTT     ADDRESS
+1   1.30 ms 192.168.64.192
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Fri Apr 12 22:19:17 2019 -- 1 IP address (1 host up) scanned in 324.14 seconds

